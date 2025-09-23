@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { initDB } from "@/lib/initDB";
+import TenantContextProvider from "@/app/contexts/TenantContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,12 +26,19 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   await initDB(); // ensure DB is initialized
+
+  // Read tenant slug from request headers (set by middleware)
+  const tenantSlug = (await headers()).get("x-tenant");
+  console.log("tenantSlug: ", tenantSlug);
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <TenantContextProvider org={tenantSlug}>
+          {children}
+        </TenantContextProvider>
       </body>
     </html>
   );
