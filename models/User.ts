@@ -8,8 +8,11 @@ export class User extends Model {
   declare name: string;
   declare email: string;
   declare password: string;
+  declare number: string;
   declare role: "super_admin" | "admin" | "production" | "crew";
   declare organizationId: string;
+  declare emailVerifiedAt: Date | null;
+  declare approved: boolean;
   declare deletedAt: Date | null;
   declare createdAt: CreationOptional<Date>;
   declare updatedAt: CreationOptional<Date>;
@@ -30,12 +33,27 @@ User.init(
     name: { type: DataTypes.STRING, allowNull: false },
     email: { type: DataTypes.STRING, allowNull: false, unique: true },
     password: { type: DataTypes.STRING, allowNull: false },
+    number: { type: DataTypes.STRING, allowNull: false },
     role: {
       type: DataTypes.ENUM("super_admin", "admin", "production", "crew"),
       defaultValue: "crew",
     },
+    emailVerifiedAt: {
+      type: DataTypes.DATE,
+      defaultValue: null,
+    },
+    approved: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
+    organizationId: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      allowNull: true,
+    },
     deletedAt: {
       type: DataTypes.DATE,
+      defaultValue: null,
     },
     createdAt: {
       type: DataTypes.DATE,

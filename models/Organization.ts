@@ -22,11 +22,12 @@ Organization.init(
     },
     name: { type: DataTypes.STRING, allowNull: false },
     slug: { type: DataTypes.STRING, unique: true, allowNull: false },
-    logo: { type: DataTypes.STRING, allowNull: false },
+    logo: { type: DataTypes.STRING, defaultValue: null },
     plan: { type: DataTypes.STRING, defaultValue: "FREE" },
-    stripeId: { type: DataTypes.STRING, allowNull: true },
+    stripeId: { type: DataTypes.STRING, allowNull: true, defaultValue: null },
     deletedAt: {
       type: DataTypes.DATE,
+      defaultValue: null,
     },
     createdAt: {
       type: DataTypes.DATE,
