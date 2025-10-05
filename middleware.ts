@@ -3,6 +3,7 @@ import { verifyToken } from "@/lib/jwt";
 
 const publicPages = [
   "/",
+  "/rough",
   "/login",
   "/book-appointment",
   "/reset-password",
@@ -33,12 +34,9 @@ export default async function middleware(req: NextRequest) {
 
   // Always set tenant header
   const host = req.headers.get("host") || "";
-  // const baseDomain =
-  //   process.env.NODE_ENV === "development"
-  //     ? "localhost:3000"
-  //     : process.env.ROOT_DOMAIN!;
+
   const parts = host.split(".");
-  const tenantSlug = parts.length > 2 ? parts[0] : '';
+  const tenantSlug = parts.length >= 2 ? parts[0] : "";
 
   // Start with a response with x-tenant
   const response = NextResponse.next();
