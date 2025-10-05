@@ -1,7 +1,7 @@
 import { DataTypes, Model, CreationOptional } from "sequelize";
 import { sequelize } from "@/lib/sequelize";
-import { Organization } from "./Organization";
 import bcrypt from "bcrypt";
+import { Organization } from "./Organization";
 
 export class User extends Model {
   declare id: CreationOptional<number>;
@@ -47,7 +47,7 @@ User.init(
       allowNull: false,
       defaultValue: false,
     },
-    organizationId: {
+    tenantId: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: true,
     },
@@ -84,5 +84,5 @@ User.init(
   }
 );
 
-Organization.hasMany(User, { foreignKey: "organizationId" });
-User.belongsTo(Organization, { foreignKey: "organizationId" });
+Organization.hasMany(User, { foreignKey: "tenantId" });
+User.belongsTo(Organization, { foreignKey: "tenantId" });
