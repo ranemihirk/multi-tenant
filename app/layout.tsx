@@ -28,15 +28,13 @@ export default async function RootLayout({
   await initDB(); // ensure DB is initialized
 
   // Read tenant slug from request headers (set by middleware)
-  const tenantSlug = (await headers()).get("x-tenant");
-  console.log("tenantSlug: ", tenantSlug);
 
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <TenantContextProvider org={tenantSlug}>
+        <TenantContextProvider>
           {children}
         </TenantContextProvider>
       </body>
