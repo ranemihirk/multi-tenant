@@ -1,7 +1,5 @@
 import "server-only";
 import { sequelize } from "./sequelize";
-import { Organization } from "@/models/Organization";
-import { User } from "@/models/User";
 
 export async function initDB() {
   try {
