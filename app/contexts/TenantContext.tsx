@@ -21,16 +21,14 @@ type TenantContext = {
 
 type TenantContextProviderProps = {
   children: ReactNode;
-  org: string | null;
 };
 
 export const TenantContext = createContext<TenantContext | null>(null);
 
 export default function TenantContextProvider({
   children,
-  org,
 }: TenantContextProviderProps) {
-  const [tenant, setTenant] = useState<string | null>(org);
+  const [tenant, setTenant] = useState<string | null>(null);
 
   return (
     <TenantContext.Provider value={{ tenant, setTenant }}>
