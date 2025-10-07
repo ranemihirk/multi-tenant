@@ -9,7 +9,6 @@ export class User extends Model {
   declare email: string;
   declare password: string;
   declare number: string;
-  declare role: "super_admin" | "admin" | "production" | "crew";
   declare organizationId: string;
   declare emailVerifiedAt: Date | null;
   declare approved: boolean;
@@ -34,10 +33,6 @@ User.init(
     email: { type: DataTypes.STRING, allowNull: false, unique: true },
     password: { type: DataTypes.STRING, allowNull: false },
     number: { type: DataTypes.STRING, allowNull: false },
-    role: {
-      type: DataTypes.ENUM("super_admin", "admin", "production", "crew"),
-      defaultValue: "crew",
-    },
     emailVerifiedAt: {
       type: DataTypes.DATE,
       defaultValue: null,

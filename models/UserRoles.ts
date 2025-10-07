@@ -41,7 +41,7 @@ UserRoles.init(
       defaultValue: DataTypes.NOW,
     },
   },
-  { sequelize, modelName: "roles" }
+  { sequelize, modelName: "userRoles" }
 );
 
 User.belongsToMany(Role, {
