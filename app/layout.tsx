@@ -4,6 +4,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { initDB } from "@/lib/initDB";
 import TenantContextProvider from "@/app/contexts/TenantContext";
+import AdminHeader from "@/app/components/AdminHeader/page";
+import Header from "@/app/components/Header/page";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,7 +37,12 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <TenantContextProvider>
-          {children}
+          {/* flex-col if user not logged in */}
+          <div className="relative flex flex-col min-h-screen bg-(--light) dark:bg-(--dark) text-(--dark) dark:text-(--light)">
+            {/* <AdminHeader /> */}
+            {/* <Header /> */}
+            {children}
+          </div>
         </TenantContextProvider>
       </body>
     </html>

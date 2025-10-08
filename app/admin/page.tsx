@@ -1,12 +1,8 @@
-'use client'
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
-import { useTenantContext } from "@/app/contexts/TenantContext";
-// import * as Styles from './styles';
 
-export default function Home() {
-  const { tenant } = useTenantContext();
-
-  return (
-    <header></header>
-  );
+export default function Admin() {
+  return <div>Admin</div>;
 }

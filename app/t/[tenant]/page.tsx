@@ -1,16 +1,12 @@
-import Image from "next/image";
-// import { useTenantContext } from "@/app/contexts/TenantContext";
-
 export default async function Tenant({
   params,
 }: {
   params: Promise<{ tenant: string }>;
 }) {
-  // const { tenant } = useTenantContext();
   const { tenant } = await params;
 
   return (
-    <main className="p-8">
+    <main className="grow bg-linear-[130deg,var(--almond)_20%,var(--matcha)_80%] p-8">
       <h1 className="text-3xl font-bold">
         🎬 {tenant ?? "No Tenants"} Production House SaaS
       </h1>

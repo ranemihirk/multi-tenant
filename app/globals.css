@@ -1,26 +1,17 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --dark: hsl(45, 4%, 18%);
+  --light: hsl(60, 27%, 91%);
+  --grey: hsl(0, 0%, 50%);
+  --almond: hsl(30, 44%, 72%);
+  --matcha: hsl(125, 10%, 45%);
+  --forest: hsl(158, 13%, 29%);
+  --eclipse: hsl(180, 35%, 15.7%);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply transition-colors duration-300;
 }
