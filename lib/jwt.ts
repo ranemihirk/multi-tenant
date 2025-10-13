@@ -1,5 +1,9 @@
+"use server";
+
 import jwt from "jsonwebtoken";
 import { User } from "@/models/User";
+import { fetchUserRoleByUserId } from "@/controllers/userController";
+import { fetchTenantFromTenantID } from "@/controllers/organizationController";
 
 const SECRET = process.env.JWT_SECRET || "supersecret";
 
@@ -10,8 +14,8 @@ export function generateToken(user: User) {
   return jwt.sign(
     {
       id: user.id,
-      role: user.role,
-      organizationId: user.organizationId,
+      role: fetchUserRoleByUserId(String(user.id)),
+      tenantSlug: fetchTenantFromTenantID(Number(user.tenantId)),
     },
     SECRET,
     { expiresIn: "7d" }
@@ -27,7 +31,7 @@ export function generateToken(user: User) {
 export function verifyToken(token: string) {
   try {
     const payload = jwt.verify(token, SECRET);
-    return payload as { id: number; role: string; organizationId: number };
+    return payload as { id: number; role: string; tenantId: number };
   } catch (err) {
     throw new Error("Invalid or expired token");
   }

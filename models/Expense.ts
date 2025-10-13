@@ -1,3 +1,4 @@
+"use strict";
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "@/lib/sequelize";
 import { Project } from "./Project";

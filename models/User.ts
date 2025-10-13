@@ -1,3 +1,4 @@
+"use strict";
 import { DataTypes, Model, CreationOptional } from "sequelize";
 import { sequelize } from "@/lib/sequelize";
 import bcrypt from "bcrypt";
@@ -9,9 +10,9 @@ export class User extends Model {
   declare email: string;
   declare password: string;
   declare number: string;
-  declare organizationId: string;
   declare emailVerifiedAt: Date | null;
   declare approved: boolean;
+  declare tenantId: string;
   declare deletedAt: Date | null;
   declare createdAt: CreationOptional<Date>;
   declare updatedAt: CreationOptional<Date>;
@@ -63,7 +64,8 @@ User.init(
   },
   {
     sequelize,
-    modelName: "user",
+    tableName: "user",
+    modelName: "User",
     hooks: {
       beforeCreate: async (user) => {
         if (user.password) {

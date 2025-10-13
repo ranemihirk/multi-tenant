@@ -5,16 +5,16 @@ import config from '../config/config';
 const env = process.env.NODE_ENV || 'development';
 
 export const sequelize =
-  env !== 'test'
+  env !== "test"
     ? new Sequelize(
         `${process.env.DATABASE_NAME}`,
         `${process.env.DATABASE_USERNAME}`,
         `${process.env.DATABASE_PASSWORD}`,
         {
           host: `${process.env.DATABASE_HOST}`,
-          port: parseInt(process.env.DATABASE_PORT || '3306'),
-          logging: console.log,
-          dialect: 'mysql',
+          port: parseInt(process.env.DATABASE_PORT || "3306"),
+          logging: false,
+          dialect: "mysql",
           dialectModule: mysql,
           retry: {
             match: [/Deadlock/i],

@@ -5,16 +5,29 @@ import process from "process";
 import * as configFile from "@/config/config"; // <- this is your config/config.ts
 
 const basename = path.basename(__filename);
-const env = (process.env.NODE_ENV as "development" | "test" | "production") || "development";
+const env =
+  (process.env.NODE_ENV as "development" | "test" | "production") ||
+  "development";
 const config = (configFile as any)[env];
 
-const db: { [key: string]: any } & { sequelize?: Sequelize; Sequelize?: typeof Sequelize } = {};
+const db: { [key: string]: any } & {
+  sequelize?: Sequelize;
+  Sequelize?: typeof Sequelize;
+} = {};
 
 let sequelize: Sequelize;
 if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable] as string, config);
+  sequelize = new Sequelize(
+    process.env[config.use_env_variable] as string,
+    config
+  );
 } else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
+  sequelize = new Sequelize(
+    config.database,
+    config.username,
+    config.password,
+    config
+  );
 }
 
 // Dynamically import all models in this folder

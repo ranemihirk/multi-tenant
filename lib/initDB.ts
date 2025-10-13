@@ -1,4 +1,5 @@
-import "server-only";
+"use server";
+
 import { sequelize } from "./sequelize";
 
 export async function initDB() {

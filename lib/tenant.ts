@@ -1,3 +1,5 @@
+"use server";
+
 // lib/tenant.ts
 import { NextRequest } from "next/server";
 import { Organization } from "@/models/Organization";

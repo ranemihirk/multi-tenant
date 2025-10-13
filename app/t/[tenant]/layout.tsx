@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
-import AdminHeader from "@/app/components/AdminHeader/page";
+import AdminHeader from "@/page-components/AdminHeader";
 
 export default async function RootLayout({
   children,

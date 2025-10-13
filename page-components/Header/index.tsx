@@ -1,14 +1,15 @@
 "use client";
 import Image from "next/image";
-import { useTenantContext } from "@/app/contexts/TenantContext";
-import * as Styles from "./styles";
+import { useTenantContext } from "@/contexts/TenantContext";
+import Login from '@/page-components/Login';
 
 export default function Home() {
   const { tenant } = useTenantContext();
 
   return (
-    <div className="bg-(--eclipse) w-full">
-      <div className="aspect-square w-24 m-auto">
+    <div className="bg-(--eclipse) w-full flex justify-between items-center">
+      <div></div>
+      <div className="aspect-square w-24">
         <Image
           src="/logo.png"
           alt="Logo"
@@ -17,6 +18,7 @@ export default function Home() {
           className="aspect-square w-full bg-(--light)"
         />
       </div>
+      <div className="px-4"><Login /></div>
     </div>
   );
 }
